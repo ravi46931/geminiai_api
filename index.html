@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload Example</title>
+</head>
+<body>
+
+    <h1>Image Upload</h1>
+
+    <form id="imageForm">
+        <input type="file" id="imageInput" accept="image/*">
+        <button type="button" onclick="uploadImage()">Upload Image</button>
+    </form>
+
+    <div id="previewContainer">
+        <h2>Preview</h2>
+        <img id="previewImage" alt="Image Preview">
+    </div>
+
+    <script>
+        function uploadImage() {
+            var input = document.getElementById('imageInput');
+            var previewImage = document.getElementById('previewImage');
+            var previewContainer = document.getElementById('previewContainer');
+
+            var file = input.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    previewImage.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+
+</body>
+</html>
